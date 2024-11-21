@@ -1,0 +1,18 @@
+  lesson1: 
+  start_time: 13.30
+  finish_time: 15.00
+  type: Лекция
+  name: История российской науки и техники
+  teacher_name: Белоусов Александр Сергеевич
+  room_number: 1404
+  address: Кронверкский пр. д.49 лит.А
+- 
+  lesson2: 
+  start_time: 18.40
+  finish_time: 20.10
+  type: Практика
+  name: История российской науки и техники
+  teacher_name: Белоусов Александр Сергеевич
+  room_number: 2326
+  address: Кронверкский пр. д.49 лит.А
+- 
