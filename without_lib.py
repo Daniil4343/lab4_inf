@@ -1,3 +1,4 @@
+import time
 print('Выберите:')
 print('1. Понедельник')
 print('2. Четверг')
@@ -14,26 +15,18 @@ else:
     import parser
     day = 'parsed'
 
+print(f"Файл: {day}1.yaml")
 
-print(f"Файл: {day}.yaml")
-
+start_time = time.time()
 with open(f"{day}.json", 'r', encoding='utf-8') as file:
     data = file.read()
+    yaml_lines = ""
+    for a in file:
+        if (not "{" in a) and (not "}" in a) and (not "]" in a) or ("}," in a):
+            yaml_lines += a.replace('"', "").replace("    ", "  ")[2:].replace("[\n", "\n-").replace("},\n", "-").replace(",", "")
+    yaml_lines = yaml_lines.replace("-  ", "- ")
 
-yaml_lines = []
-indent = "  "
-for line in data.splitlines():
-    line = line.strip().rstrip(",")
-    if line.endswith("{") or line.endswith("}"):
-        continue
-    if ":" in line:
-        key, value = line.split(":", 1)
-        key = key.strip().replace('"', '')
-        value = value.strip().replace('"', '')
-        yaml_lines.append(f"{indent}{key}: {value}")
-    else:
-        yaml_lines.append(f"- {line.strip()}")
-
-with open(f"{day}.yaml", 'w', encoding='utf-8') as file:
-    file.write('\n'.join(yaml_lines))
-
+with open(f"{day}1.yaml", 'w', encoding='utf-8') as file:
+    file.write(yaml_lines)
+end_time = time.time()
+print(f"Время выполнения: {100*(end_time - start_time):.5f}")
